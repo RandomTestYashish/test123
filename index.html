@@ -11,6 +11,7 @@
     justify-content: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden;
     font-family: system-ui, sans-serif;
     background: #0f172a;
     color: #f8fafc;
@@ -24,10 +25,49 @@
     color: #94a3b8;
     margin-top: 0.5rem;
   }
+
+  #launch-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    font-size: 4rem;
+    z-index: 10;
+    animation: fade-out 0.6s ease-in 1.4s forwards;
+  }
+  #rocket {
+    display: inline-block;
+    animation: launch 1.4s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  }
+  @keyframes launch {
+    0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+    70% { transform: translateY(-60vh) rotate(-45deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(-45deg); opacity: 0; }
+  }
+  @keyframes fade-out {
+    to { opacity: 0; visibility: hidden; }
+  }
+
+  #content {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.7s ease-out 1.5s forwards;
+  }
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 </head>
 <body>
-<h1>Hello, World!</h1>
-<h2>this is yashish</h2>
+<div id="launch-screen">
+  <span id="rocket">🚀</span>
+</div>
+<div id="content">
+  <h1>Hello, World!</h1>
+  <h2>this is yashish</h2>
+</div>
 </body>
 </html>
